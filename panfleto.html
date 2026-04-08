@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Mockup | Projeto 300</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #f0f0f0; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: 'Inter', sans-serif; padding: 20px; }
+
+        /* Área do Print - Simula o Panfleto */
+        .marketing-capture-area {
+            width: 100%;
+            max-width: 800px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Faixa de Destaque */
+        .exclusive-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: #d4af37;
+            color: #000;
+            padding: 8px 40px;
+            transform: rotate(45deg);
+            font-weight: 800;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Cabeçalho */
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: #121212; line-height: 1; }
+        header p { font-size: 0.9rem; color: #666; margin-top: 5px; }
+        header b { color: #d4af37; }
+
+        /* Grade das Duas Caras */
+        .system-faces-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Estilo comum dos Mocks */
+        .face-card {
+            background: #f9f9f9;
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid #eee;
+            position: relative;
+        }
+        .face-card h2 { font-size: 1.1rem; color: #121212; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .face-card h2 span { background: #d4af37; color: #fff; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.8rem; }
+
+        /* Simulação da Tela do Celular (Mockup) */
+        .phone-mockup {
+            width: 100%;
+            height: 350px;
+            background: #0a0a0a;
+            border-radius: 20px;
+            border: 8px solid #333;
+            padding: 15px;
+            color: #fff;
+            font-size: 0.6rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Estilos Internos das Telas (Simulando o sistema original) */
+        .phone-mockup .title { font-family: 'Great Vibes', cursive; font-size: 1.8rem; text-align: center; color: #d4af37; }
+        .phone-mockup .tagline { text-align: center; color: #666; font-size: 0.5rem; text-transform: uppercase; margin-bottom: 10px; display: block;}
+        .phone-mockup .input { background: #1a1a1a; border: 1px solid #333; padding: 6px; border-radius: 5px; margin-bottom: 6px; color: #fff; }
+        .phone-mockup .btn { background: #d4af37; color: #000; padding: 10px; text-align: center; border-radius: 8px; font-weight: 800; text-transform: uppercase; margin-top: 10px; }
+        .phone-mockup .slot { background: #222; padding: 5px; border-radius: 4px; text-align: center; margin: 2px; }
+        .phone-mockup .slot.selected { background: rgba(212,175,55,0.3); border: 1px solid #d4af37; color: #d4af37; }
+        
+        /* Interno Admin */
+        .phone-mockup.admin .item { background: #1a1a1a; padding: 8px; border-radius: 8px; border-left: 3px solid #d4af37; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+        .phone-mockup.admin .zap { background: #25d366; padding: 4px 8px; border-radius: 4px; color: #fff; font-weight: bold; }
+
+        /* Lista de Benefícios */
+        .check-list { list-style: none; font-size: 0.8rem; color: #555; margin-top: 15px; line-height: 1.6; }
+        .check-list li::before { content: '✅'; margin-right: 8px; }
+
+        /* Rodapé de Fechamento */
+        footer {
+            text-align: center;
+            background: #121212;
+            color: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            position: relative;
+        }
+        footer h3 { font-size: 1rem; margin-bottom: 10px; }
+        footer .price { font-size: 2rem; font-weight: 800; color: #d4af37; }
+        footer .price small { font-size: 0.9rem; color: #fff; font-weight: 400; }
+        footer p { font-size: 0.75rem; color: #aaa; margin-top: 5px; }
+
+    </style>
+</head>
+<body>
+
+<div class="marketing-capture-area">
+    <div class="exclusive-badge">Joinville</div>
+
+    <header>
+        <h1>SaaS Barbearia Pro</h1>
+        <p>A tecnologia que sua barbearia merece, pelo preço que você quer pagar. <b>Exclusivo.</b></p>
+    </header>
+
+    <div class="system-faces-grid">
+        
+        <div class="face-card">
+            <h2><span>1</span> Experiência do Cliente</h2>
+            <div class="phone-mockup">
+                <div class="title">Beauty</div>
+                <span class="tagline">Exclusive Booking</span>
+                <div class="input">Nome Completo</div>
+                <div class="input">WhatsApp</div>
+                <div class="input">Barbeiro: Cadu</div>
+                <div class="input">Serviço: Corte</div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; margin-top:5px;">
+                    <div class="slot disabled">08:00</div>
+                    <div class="slot">09:00</div>
+                    <div class="slot disabled">10:00</div>
+                    <div class="slot selected">11:00</div>
+                    <div class="slot">13:00</div>
+                    <div class="slot">14:00</div>
+                </div>
+                <div class="btn">Agendar em 30 segundos</div>
+            </div>
+            <ul class="check-list">
+                <li>Link na Bio do Instagram.</li>
+                <li>Escolha de Barbeiro e Serviço.</li>
+                <li>Interface Premium e Rápida.</li>
+            </ul>
+        </div>
+
+        <div class="face-card">
+            <h2><span>2</span> Painel do Proprietário</h2>
+            <div class="phone-mockup admin">
+                <div style="font-weight:bold; color:#d4af37; margin-bottom:10px; font-size:0.8rem;">Agenda Hoje (10/04)</div>
+                <div class="item">
+                    <div><b>11:00 - Daniel</b><br><small>Corte | Cadu</small></div>
+                    <div class="zap">Zap</div>
+                </div>
+                <div class="item">
+                    <div><b>14:00 - Marcos</b><br><small>Barba | Felipe</small></div>
+                    <div class="zap">Zap</div>
+                </div>
+                <div class="item" style="border-left-color: #ff4444; color:#ff4444;">
+                    <div><b>16:00 - BLOQUEIO</b><br><small>Manutenção</small></div>
+                </div>
+                <div style="color:#25d366; font-weight:bold; text-align:center; margin-top:10px;">🔔 NOVO AGENDAMENTO! (Som)</div>
+            </div>
+            <ul class="check-list">
+                <li>Notificação no WhatsApp e no Site.</li>
+                <li>Organização por Profissional.</li>
+                <li>Bloqueio manual de horários.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <h3>Sua agenda cheia por um custo fixo</h3>
+        <div class="price">R$ 49,90<small>/mês</small></div>
+        <p>Sistema completo. Sem taxas ocultas. Suporte local em Joinville.</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
