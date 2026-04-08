@@ -34,23 +34,38 @@
         .phone-mockup {
             width: 100%; height: 380px; background: #0a0a0a; border-radius: 25px;
             border: 8px solid #333; padding: 15px; color: #fff; font-size: 0.65rem;
-            overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative;
+            overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative;
+            display: flex; flex-direction: column;
         }
 
         /* Estilos Cliente */
         .phone-mockup .title { font-family: 'Great Vibes', cursive; font-size: 1.8rem; text-align: center; color: #d4af37; }
-        .phone-mockup .input-fake { background: #1a1a1a; border: 1px solid #333; padding: 8px; border-radius: 6px; margin-bottom: 6px; color: #888; cursor: text; }
+        .phone-mockup .input-fake { background: #1a1a1a; border: 1px solid #333; padding: 8px; border-radius: 6px; margin-bottom: 6px; color: #888; }
         .grid-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin: 10px 0; }
         .slot-fake { background: #222; padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; border: 1px solid transparent; transition: 0.2s; }
-        .slot-fake:hover { border-color: #d4af37; }
         .slot-fake.selected { background: rgba(212,175,55,0.2); border-color: #d4af37; color: #d4af37; font-weight: bold; }
         .btn-booking { background: #d4af37; color: #000; padding: 12px; text-align: center; border-radius: 10px; font-weight: 800; text-transform: uppercase; cursor: pointer; margin-top: 5px; }
 
-        /* Estilos Admin */
-        .admin-item { background: #161616; padding: 10px; border-radius: 10px; border-left: 3px solid #d4af37; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+        /* Estilos Admin - Painel de Controle */
+        .admin-content { flex: 1; overflow-y: auto; padding-bottom: 50px; }
+        .admin-item { background: #161616; padding: 10px; border-radius: 10px; border-left: 3px solid #d4af37; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
         .admin-item.new-anim { animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { background: #161616; } 50% { background: #222; } 100% { background: #161616; } }
-        .zap-btn { background: #25d366; color: #fff; padding: 5px 8px; border-radius: 5px; font-weight: bold; cursor: pointer; text-decoration: none; }
+        .zap-btn { background: #25d366; color: #fff; padding: 5px 8px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+
+        /* Nav Inferior do Admin */
+        .admin-nav {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 50px;
+            background: #111; border-top: 1px solid #333; display: flex; justify-content: space-around; align-items: center;
+        }
+        .nav-icon { font-size: 0.8rem; color: #666; cursor: pointer; text-align: center; flex: 1; padding: 5px 0; }
+        .nav-icon.active { color: #d4af37; font-weight: bold; }
+
+        /* Seções Escondidas */
+        .admin-section { display: none; }
+        .admin-section.active { display: block; }
+
+        .add-btn-fake { border: 1px dashed #d4af37; color: #d4af37; padding: 8px; text-align: center; border-radius: 8px; margin-top: 10px; font-size: 0.6rem; cursor: pointer; }
 
         .check-list { list-style: none; font-size: 0.75rem; color: #666; margin-top: 15px; }
         .check-list li { margin-bottom: 4px; }
@@ -58,7 +73,6 @@
 
         footer { text-align: center; background: #121212; color: #fff; padding: 20px; border-radius: 20px; }
         .price { font-size: 2.2rem; font-weight: 800; color: #d4af37; margin: 5px 0; }
-        .price small { font-size: 1rem; color: #fff; font-weight: 400; }
     </style>
 </head>
 <body>
@@ -75,21 +89,22 @@
         
         <div class="face-card">
             <h2><span>1</span> Agendamento Rápido</h2>
-            <div class="phone-mockup" id="clienteMockup">
-                <div class="title">Beauty</div>
-                <p style="text-align:center; font-size:0.5rem; color:#666; text-transform:uppercase; margin-bottom:10px;">Booking Experience</p>
-                <div class="input-fake">Seu Nome</div>
-                <div class="input-fake">Seu WhatsApp</div>
-                <p style="font-size:0.55rem; color:#aaa; margin: 8px 0 4px;">Selecione o horário:</p>
-                <div class="grid-slots">
-                    <div class="slot-fake" onclick="selectSlot(this)">09:00</div>
-                    <div class="slot-fake" onclick="selectSlot(this)">10:00</div>
-                    <div class="slot-fake" onclick="selectSlot(this)">11:00</div>
-                    <div class="slot-fake" onclick="selectSlot(this)">14:00</div>
-                    <div class="slot-fake" onclick="selectSlot(this)">15:00</div>
-                    <div class="slot-fake" onclick="selectSlot(this)">16:00</div>
+            <div class="phone-mockup">
+                <div class="admin-content">
+                    <div class="title">Beauty</div>
+                    <p style="text-align:center; font-size:0.5rem; color:#666; text-transform:uppercase; margin-bottom:10px;">Booking Experience</p>
+                    <div class="input-fake">Seu Nome</div>
+                    <div class="input-fake">Seu WhatsApp</div>
+                    <div class="grid-slots">
+                        <div class="slot-fake" onclick="selectSlot(this)">09:00</div>
+                        <div class="slot-fake" onclick="selectSlot(this)">10:00</div>
+                        <div class="slot-fake" onclick="selectSlot(this)">11:00</div>
+                        <div class="slot-fake" onclick="selectSlot(this)">14:00</div>
+                        <div class="slot-fake" onclick="selectSlot(this)">15:00</div>
+                        <div class="slot-fake" onclick="selectSlot(this)">16:00</div>
+                    </div>
+                    <div class="btn-booking" onclick="simularAgendamento()">Reservar Agora</div>
                 </div>
-                <div class="btn-booking" onclick="simularAgendamento()">Reservar Agora</div>
             </div>
             <ul class="check-list">
                 <li>Agendamento em 3 cliques.</li>
@@ -100,43 +115,84 @@
 
         <div class="face-card">
             <h2><span>2</span> Gestão do Dono</h2>
-            <div class="phone-mockup admin">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                    <b style="color:#d4af37; font-size:0.7rem;">Agenda de Hoje</b>
-                    <span style="background:#333; padding:2px 6px; border-radius:4px; font-size:0.5rem;">Online</span>
-                </div>
-                <div id="adminLista">
-                    <div class="admin-item">
-                        <div><b>09:00 - Rafael</b><br><small style="color:#888;">Corte | Cadu</small></div>
-                        <div class="zap-btn" onclick="alert('Abrindo WhatsApp do cliente...')">ZAP</div>
+            <div class="phone-mockup">
+                
+                <div class="admin-content" style="padding: 15px;">
+                    
+                    <div id="sec-agenda" class="admin-section active">
+                        <b style="color:#d4af37; font-size:0.7rem; display:block; margin-bottom:10px;">📅 Próximos Horários</b>
+                        <div id="adminLista">
+                            <div class="admin-item">
+                                <div><b>09:00 - Rafael</b><br><small style="color:#888;">Corte | Cadu</small></div>
+                                <div class="zap-btn">ZAP</div>
+                            </div>
+                        </div>
+                        <div id="notifFake" style="display:none; color:#25d366; font-weight:bold; text-align:center; margin-top:10px; font-size:0.6rem;">
+                            🔔 NOVO CLIENTE AGENDADO!
+                        </div>
                     </div>
-                    <div class="admin-item">
-                        <div><b>10:00 - Gustavo</b><br><small style="color:#888;">Barba | Felipe</small></div>
-                        <div class="zap-btn" onclick="alert('Abrindo WhatsApp do cliente...')">ZAP</div>
+
+                    <div id="sec-equipe" class="admin-section">
+                        <b style="color:#d4af37; font-size:0.7rem; display:block; margin-bottom:10px;">✂️ Gerenciar Equipe</b>
+                        <div class="admin-item">
+                            <div><b>Barbeiro: Cadu</b><br><small style="color:#25d366;">Disponível</small></div>
+                            <small>Edit</small>
+                        </div>
+                        <div class="admin-item">
+                            <div><b>Barbeiro: Felipe</b><br><small style="color:#ff4444;">Folga</small></div>
+                            <small>Edit</small>
+                        </div>
+                        <div class="add-btn-fake">+ Adicionar Novo Barbeiro</div>
                     </div>
+
+                    <div id="sec-produtos" class="admin-section">
+                        <b style="color:#d4af37; font-size:0.7rem; display:block; margin-bottom:10px;">🛍️ Catálogo de Serviços</b>
+                        <div class="admin-item">
+                            <div><b>Corte Social</b><br><small style="color:#888;">R$ 45,00</small></div>
+                            <small>Edit</small>
+                        </div>
+                        <div class="admin-item">
+                            <div><b>Barba Completa</b><br><small style="color:#888;">R$ 35,00</small></div>
+                            <small>Edit</small>
+                        </div>
+                        <div class="add-btn-fake">+ Adicionar Produto/Serviço</div>
+                    </div>
+
                 </div>
-                <div id="notifFake" style="display:none; color:#25d366; font-weight:bold; text-align:center; margin-top:10px; font-size:0.7rem; animation: bounce 1s infinite;">
-                    🔔 NOVO CLIENTE AGENDADO!
+
+                <div class="admin-nav">
+                    <div class="nav-icon active" onclick="switchTab(this, 'sec-agenda')">📅<br>Agenda</div>
+                    <div class="nav-icon" onclick="switchTab(this, 'sec-equipe')">✂️<br>Equipe</div>
+                    <div class="nav-icon" onclick="switchTab(this, 'sec-produtos')">🛍️<br>Serviços</div>
                 </div>
+
             </div>
             <ul class="check-list">
-                <li>Notificação sonora instantânea.</li>
-                <li>Botão direto para o WhatsApp.</li>
-                <li>Controle total da sua equipe.</li>
+                <li>Adicione Barbeiros e Serviços.</li>
+                <li>Controle de estoque e preços.</li>
+                <li>Painel completo de faturamento.</li>
             </ul>
         </div>
 
     </div>
 
     <footer>
-        <p style="font-size:0.8rem; color:#aaa; text-transform:uppercase; letter-spacing:1px;">Invista no seu negócio</p>
         <div class="price">R$ 49,90<small>/mês</small></div>
-        <p style="font-size:0.7rem; color:#888;">Sistema completo | Suporte em Joinville | Sem Multas</p>
+        <p style="font-size:0.7rem; color:#888;">Gestão completa de Barbearia em Joinville</p>
     </footer>
 </div>
 
 <script>
-    // Lógica do Cliente
+    // Lógica de Troca de Abas no Admin
+    function switchTab(el, sectionId) {
+        document.querySelectorAll('.nav-icon').forEach(n => n.classList.remove('active'));
+        document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+        
+        el.classList.add('active');
+        document.getElementById(sectionId).classList.add('active');
+    }
+
+    // Lógica do Cliente (Mantida)
     function selectSlot(el) {
         document.querySelectorAll('.slot-fake').forEach(s => s.classList.remove('selected'));
         el.classList.add('selected');
@@ -144,16 +200,18 @@
 
     function simularAgendamento() {
         const selecionado = document.querySelector('.slot-fake.selected');
-        if(!selecionado) return alert("Escolha um horário para testar!");
+        if(!selecionado) return alert("Escolha um horário!");
         
         const hora = selecionado.innerText;
-        alert("Simulando agendamento das " + hora + "...");
+        alert("Agendamento Enviado!");
         
-        // Faz a mágica acontecer no lado do admin
+        // Volta para a aba de agenda para mostrar o resultado
+        switchTab(document.querySelector('.nav-icon'), 'sec-agenda');
+        
         document.getElementById('notifFake').style.display = 'block';
         const novaReserva = document.createElement('div');
         novaReserva.className = 'admin-item new-anim';
-        novaReserva.innerHTML = `<div><b>${hora} - NOVO TESTE</b><br><small style="color:#888;">Simulação | Admin</small></div><div class="zap-btn">ZAP</div>`;
+        novaReserva.innerHTML = `<div><b>${hora} - NOVO</b><br><small style="color:#888;">Teste | Cliente</small></div><div class="zap-btn">ZAP</div>`;
         document.getElementById('adminLista').prepend(novaReserva);
     }
 </script>
